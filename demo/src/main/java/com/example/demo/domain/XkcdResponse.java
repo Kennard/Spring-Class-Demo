@@ -6,7 +6,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class XkcdComic {
+public class XkcdResponse {
     private String month;
     private int num;
     private String link;
