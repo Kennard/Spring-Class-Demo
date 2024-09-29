@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class HomeController {
 // URLS that are not API endpoints.
-     @GetMapping("/")
+     @GetMapping(value = {"/", "/pastComic", "/currentComic"})
      public String index() {
          return "index";
     }

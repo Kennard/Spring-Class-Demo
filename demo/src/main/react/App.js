@@ -3,7 +3,7 @@ import ReactDom from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import AppContainer from './containers/AppContainer';
 import XkcdPastComicContainer from './containers/XkcdPastComicContainer';
-// router
+import XkcdCurrentComicContainer from './containers/XkcdCurrentComicContainer';
 
 const router = createBrowserRouter([
     {
@@ -12,7 +12,11 @@ const router = createBrowserRouter([
         children: [
             {
                 index: true,
-                element:<div>Home page</div>
+                element: <div>Home page</div>
+            },
+            {
+                path:"currentComic",
+                element: <XkcdCurrentComicContainer />
             },
             {
                 path:"pastComic",

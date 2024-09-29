@@ -3,18 +3,20 @@ import React, { useState } from "react";
 //functional component
 const Nav = (props) => {
     const {locationUrl} = props;
-    const pageURLs = [ 
+    const pageUrls = [ 
         {
             url: "/",
             label: "Home"
         },
         {
+            url: "/currentComic",
+            label: "Current Comic"
+        },
+        {
             url: "/pastComic",
-            label: "XKCD Past Comic"
+            label: "Past Comic"
         }
     ]
-    //.map -> returns a new array of objects
-    //.forEach -> loops through
     return (
         <nav className="navbar navbar-expand-lg bg-body-tertiary">
             <div className="container-fluid">
@@ -24,15 +26,15 @@ const Nav = (props) => {
                 </button>
                 <div className="collapse navbar-collapse" id="navbarNav">
                     <ul className="navbar-nav">
-                        {pageURLs.map((linkInfo, index) => {
-                            return(
+                        {pageUrls.map((linkInfo, index) => {
+                            return (
                                 <li key={index} className="nav-item">
                                     <a className={`nav-link ${locationUrl === linkInfo.url ? "active" : ""}`} aria-current="page" href={linkInfo.url}>
                                         {linkInfo.label}
                                     </a>
                                 </li>
-                            )
-                          }) }
+                                )    
+                          })}
                     </ul>
                 </div>
             </div>

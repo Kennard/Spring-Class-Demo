@@ -1,12 +1,11 @@
-import React from "react";
-import Nav from "../components/nav";
+import React, { Component } from "react";
+
 
 //class component
 export class XkcdPastComicContainer extends Component {
     constructor(props){
         super(props);
         this.state = {
-
         }
     }
 
@@ -42,4 +41,4 @@ export default XkcdPastComicContainer
     // </div>
 
     // lifecycle methods
-    // component load, unmount, update
+    // component mount, unmount, update
