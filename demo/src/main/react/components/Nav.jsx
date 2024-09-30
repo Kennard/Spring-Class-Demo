@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 //functional component
 const Nav = (props) => {

@@ -1,19 +1,17 @@
-import React from 'react';
-import React, { useEffect } from "react";
 import axios from "axios";
-
+import React, { useEffect } from "react";
 
 //fucntional component
 const XkcdCurrentComicContainer = () => {
 
     useEffect(() => {
         axios.get("/current")
-        .then(function(response){
-            console.log(response)
+        .then(function(response){ 
+            console.log(response) 
         })
-        .catch(function(error){
-            console.error(error)
-        })
+        .catch(function(error){ 
+            console.error(error) 
+        }) 
     }, [])
     // array as second variable in useEffect controlls whether it is a componentDidMount, ComponentDidUpdate lifecycle method
     // [] => componentDidMount
