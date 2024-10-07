@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import ComicView from "../components/ComicView";
 
 //fucntional component
 const XkcdCurrentComicContainer = () => {
@@ -20,7 +21,9 @@ const XkcdCurrentComicContainer = () => {
     }, [])
 
     return xkcdCurrentStatus === "SUCCESS" ? 
-        onSuccess() 
+       <ComicView 
+        xkcdComicInfo={xkcdCurrentComic}
+       />
         : xkcdCurrentStatus === "FAILURE" ?
             onFailure()
             : <div className="spinner-border" role="status">
@@ -35,22 +38,7 @@ const XkcdCurrentComicContainer = () => {
         )
     }
 
-    function onSuccess(){  
-        return(
-            <div>
-                <h1>
-                    {xkcdCurrentComic.safe_title}
-                </h1>
-                <div>
-                    <img src={xkcdCurrentComic.img} alt={xkcdCurrentComic.alt || "No XKCD Comic today"} />
-                </div>
-                <div>
-                    {xkcdCurrentComic.transcript}
-                </div>
-            </div>
-        )
-    }
-
+    
 
 }
 

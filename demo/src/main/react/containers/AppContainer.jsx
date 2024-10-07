@@ -1,12 +1,15 @@
 import React from "react";
 import Nav from "../components/Nav";
 import { Outlet } from "react-router-dom";
-
+import { useLocation } from "react-router-dom";
 //functional component
 const AppContainer = () => {
+    const location = useLocation();
+    console.log(location);
+    
     return (
         <>
-            <Nav locationUrl="/" />
+            <Nav locationUrl={location.pathname} />
             <Outlet />
         </>
     )
