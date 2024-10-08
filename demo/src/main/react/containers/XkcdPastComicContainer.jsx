@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import ComicView from "../components/ComicView";
+import { useStore } from "../createStore";
 
 //class component
 export class XkcdPastComicContainer extends Component {
@@ -18,6 +19,8 @@ export class XkcdPastComicContainer extends Component {
     }
 
     render(){
+        // const storeInfo = useStore.getState();
+        // console.log(storeInfo)
         const {pastComicStatus, pastComic, userComicNum} = this.state
 
         return pastComicStatus === "SUCCESS" ? 

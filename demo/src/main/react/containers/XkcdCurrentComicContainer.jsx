@@ -1,30 +1,21 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import ComicView from "../components/ComicView";
+import { useStore } from "../createStore";
 
 //fucntional component
 const XkcdCurrentComicContainer = () => {
-    const [xkcdCurrentComic, setXkcdCurrentComic] = useState({})
-    const [xkcdCurrentStatus, setXkcdCurrentStatus] = useState(null)
+    const xkcdComic = useStore()
 
     useEffect(() => {
-        setXkcdCurrentStatus("PENDING")
-        axios.get("/current")
-        .then(function(response){ 
-            setXkcdCurrentComic(response.data)
-            setXkcdCurrentStatus("SUCCESS") 
-        })
-        .catch(function(error){ 
-            xkcdCurrentStatus("FAILURE")
-            console.error(error) 
-        }) 
+        xkcdComic.fetchCurrentComic()       
     }, [])
 
-    return xkcdCurrentStatus === "SUCCESS" ? 
+    return xkcdComic.currentComicStatus === "SUCCESS" ? 
        <ComicView 
-        xkcdComicInfo={xkcdCurrentComic}
+        xkcdComicInfo={xkcdComic.currentComic}
        />
-        : xkcdCurrentStatus === "FAILURE" ?
+        : xkcdComic.currentComicStatus === "FAILURE" ?
             onFailure()
             : <div className="spinner-border" role="status">
                 <span className="visually-hidden">Loading...</span>

@@ -5,7 +5,6 @@ import { useLocation } from "react-router-dom";
 //functional component
 const AppContainer = () => {
     const location = useLocation();
-    console.log(location);
     
     return (
         <>
