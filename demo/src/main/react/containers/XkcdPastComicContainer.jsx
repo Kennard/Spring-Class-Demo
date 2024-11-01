@@ -1,28 +1,25 @@
 import React, { Component } from "react";
-import axios from "axios";
 import ComicView from "../components/ComicView";
 import { useStore } from "../createStore";
+import withStore from "../hocs/withStore";
 
 //class component
 export class XkcdPastComicContainer extends Component {
     constructor(props){
         super(props);
         this.state = {
-            pastComic: {},
-            pastComicStatus: null,
             userComicNum: null
         }
     }
 
     componentDidMount(){
-        this.pastComicApiCall(null)
+      this.pastComicApiCall();
     }
 
     render(){
-        // const storeInfo = useStore.getState();
-        // console.log(storeInfo)
-        const {pastComicStatus, pastComic, userComicNum} = this.state
-
+        const {userComicNum} = this.state
+        const {store} = this.props;
+        const pastComicStatus = store.pastComicStatus
         return pastComicStatus === "SUCCESS" ? 
             <React.Fragment>
                 <div>
@@ -42,8 +39,9 @@ export class XkcdPastComicContainer extends Component {
                     </button>
                 </div>
                 <ComicView
-                    xkcdComicInfo={pastComic}
+                    xkcdComicInfo={store.pastComic}
                 />
+              
             </React.Fragment>
             : pastComicStatus === "FAILURE" ?
                 onFailure()
@@ -61,23 +59,13 @@ export class XkcdPastComicContainer extends Component {
     }
 
     pastComicApiCall = (comicNum) => {
-        const stateControl = (data, status) => {
-            this.setState({ pastComic: data, pastComicStatus: status })
-        }
-        axios.get(`/past/${!comicNum ? Math.floor(Math.random() * 2900) : comicNum}`)
-        .then(function(response){ 
-            stateControl(response.data, "SUCCESS")
-        })
-        .catch(function(error){ 
-            stateControl({}, "FAILURE")
-            console.log(error)
-        }) 
-
+        const storeInfo = useStore.getState();
+        storeInfo.fetchPastComic(comicNum);
     }
 
 }
 
-export default XkcdPastComicContainer
+export default withStore (XkcdPastComicContainer)
 
 // Props and State trigger refreshes on the UI
  // this.props
