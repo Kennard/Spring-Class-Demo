@@ -12,7 +12,7 @@ const router = createBrowserRouter([
         children: [
             {
                 index: true,
-                element: <div>Home page</div>
+                element: <div>Home page with gradle compile</div>
             },
             {
                 path:"currentComic",
